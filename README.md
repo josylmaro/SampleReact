@@ -23,12 +23,7 @@ Created a sample API that returns the following sample data
 https://appdevstudioapimanagement.azure-api.net/BookSample/book
 
 Used the following frameworks:
-Redux-toolkit
-reactstrap
-create-react-app
-jest
-react-dom-router
-sass
+Redux-toolkit, reactstrap, create-react-app, jest, react-dom-router, sass
 
 [
   {
