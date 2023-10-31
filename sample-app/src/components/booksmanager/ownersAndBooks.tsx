@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Row, Col, Button } from "reactstrap";
+import { Container, Row, Col, Button, Label } from "reactstrap";
 import BookCard from "./common/bookCard";
 import { getAllUsers } from "../../redux/reducers/bookReadersManagementReducer";
 import { useAppDispatch } from "../../redux/store";
@@ -40,14 +40,16 @@ function OwnersAndBooks() {
   
     return(
         <Container className="text-center">
-             { storeData.isLoading ? <div>Loading...</div> : (
+             { storeData.isLoading ? <Label>Loading...</Label> : (
             <div>
+                { storeData.bookReaders.length === 0 ? <Row><Col><Label>{labels.noBooksFound}</Label></Col></Row> : 
                 <Row>
                     <Col sm={0} md={2}></Col>
                     <Col sm={6} md={4}><BookCard title={labels.maleOwnerTitle} books={ getOwnersBooks(true, hardCoverOnly)} ></BookCard></Col>  
                     <Col sm={6} md={4}><BookCard title={labels.femaleOwnerTitle} books={ getOwnersBooks(false, hardCoverOnly)} ></BookCard></Col>
                     <Col sm={0} md={2}></Col>
                 </Row>
+                }
                 <Row>
                     <Col><hr/></Col>
                 </Row>
