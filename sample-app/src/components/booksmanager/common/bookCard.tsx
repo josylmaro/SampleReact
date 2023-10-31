@@ -5,7 +5,7 @@ import {Card, CardHeader, CardBody, CardText } from 'reactstrap'
 function BookCard ({title, books} : {title: string, books: Array<Book>}) {
     return ( 
         <Card className='mt-4'>
-            <CardHeader className='blue-header text-center'><h1>{title}</h1></CardHeader>
+            <CardHeader className='blue-header text-center'><h2>{title}</h2></CardHeader>
             <CardBody>
                 { books?.map((item,key) => {
                     return (
