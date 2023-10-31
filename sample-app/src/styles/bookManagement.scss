@@ -1,0 +1,15 @@
+$blue: #0079c8;
+
+.blue-header {
+    background-color: $blue;
+    color: white;
+}
+
+.btn-link:hover {
+    background: none;
+}
+
+.btn-primary {
+    background-color: $blue;
+    color: white;
+}
