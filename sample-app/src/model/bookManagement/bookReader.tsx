@@ -3,7 +3,7 @@ import Book  from './book'
 interface BookReader {
     name: string,
     gender: string,
-    age: Int32Array,
+    age: number,
     books: Array<Book>
 }
 
