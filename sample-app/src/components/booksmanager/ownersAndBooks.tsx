@@ -30,7 +30,7 @@ function OwnersAndBooks() {
   const getOwnersBooks = (isMaleOwner : boolean, displayHardBooksOnly : boolean) => {
     const gender = isMaleOwner ? constants.male : constants.female
     const owners = storeData.bookReaders.filter(x=> x.gender === gender && x.books?.length > 0);
-    const books = owners.flatMap( x=> x.books);
+    const books = owners.flatMap(x=> x.books).sort((a, b)=> a.name > b.name ? 1 : -1);
     if(displayHardBooksOnly) {
         return books.filter(x=> x.type === constants.hardCover);
     } else {
@@ -38,15 +38,20 @@ function OwnersAndBooks() {
     }
   }
   
+  const getHardcoverLinkText = (isHardCoverOnly:boolean) => {
+    return !!!isHardCoverOnly ? labels.hardCoverOnly : labels.displayAllBooks;
+  }
+
     return(
-        <Container className="text-center">
+        <Container>
              { storeData.isLoading ? <Label>Loading...</Label> : (
             <div>
                 { storeData.bookReaders.length === 0 ? <Row><Col><Label>{labels.noBooksFound}</Label></Col></Row> : 
                 <Row>
                     <Col sm={0} md={2}></Col>
-                    <Col sm={6} md={4}><BookCard title={labels.maleOwnerTitle} books={ getOwnersBooks(true, hardCoverOnly)} ></BookCard></Col>  
-                    <Col sm={6} md={4}><BookCard title={labels.femaleOwnerTitle} books={ getOwnersBooks(false, hardCoverOnly)} ></BookCard></Col>
+                    {/* use the BookCard component to display the books, passing the title for cleaner passing of texts */}
+                    <Col sm={6} md={4}><BookCard title={hardCoverOnly ? labels.maleOwnerHardCoverBooksTitle : labels.maleOwnerTitle} books={ getOwnersBooks(true, hardCoverOnly)} ></BookCard></Col>  
+                    <Col sm={6} md={4}><BookCard title={hardCoverOnly ? labels.femaleOwnerHardCoverBooksTitle : labels.femaleOwnerTitle} books={ getOwnersBooks(false, hardCoverOnly)} ></BookCard></Col>
                     <Col sm={0} md={2}></Col>
                 </Row>
                 }
@@ -56,7 +61,7 @@ function OwnersAndBooks() {
                 <Row>
                     <Col sm={6} md={6}></Col>
                     <Col sm={6} md={6}>
-                        <Button className="btn btn-link" onClick={ () => setIsHardCoverOnly(!hardCoverOnly)} title="Hardcover only">Hardcover only</Button>
+                        <Button className="btn btn-link" onClick={ () => setIsHardCoverOnly(!hardCoverOnly)} title="Hardcover only">{getHardcoverLinkText(hardCoverOnly)}</Button>
                         <Button className="btn btn-primary" value={"Get Books"} onClick={ () => getUsers() } >Get Books</Button>
                     </Col>
                 </Row>
