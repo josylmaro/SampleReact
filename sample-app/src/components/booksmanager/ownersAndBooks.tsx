@@ -46,7 +46,7 @@ function OwnersAndBooks() {
         <Container>
              { storeData.isLoading ? <Label>Loading...</Label> : (
             <div>
-                { storeData.bookReaders.length === 0 ? <Row><Col><Label>{labels.noBooksFound}</Label></Col></Row> : 
+                { storeData.bookReaders.length === 0 ? <Row><Col>{labels.noBooksFound}</Col></Row> : 
                 <Row>
                     <Col sm={0} md={2}></Col>
                     {/* use the BookCard component to display the books, passing the title for cleaner passing of texts */}
@@ -61,7 +61,7 @@ function OwnersAndBooks() {
                 <Row>
                     <Col sm={6} md={6}></Col>
                     <Col sm={6} md={6}>
-                        <Button className="btn btn-link" onClick={ () => setIsHardCoverOnly(!hardCoverOnly)} title="Hardcover only">{getHardcoverLinkText(hardCoverOnly)}</Button>
+                        <Button className="btn btn-link" onClick={ () => setIsHardCoverOnly(!hardCoverOnly)} >{getHardcoverLinkText(hardCoverOnly)}</Button>
                         <Button className="btn btn-primary" value={"Get Books"} onClick={ () => getUsers() } >Get Books</Button>
                     </Col>
                 </Row>
